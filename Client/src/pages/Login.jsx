@@ -1,36 +1,45 @@
-import React, { useCallback, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { MemoizedInput } from '../components/Input';
+import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import MemoizedInput from '../components/Input';
 import '../assets/styles/login/login.scss';
-import members from '../util/member';
-
+import { baseUrl } from '../util/baseUrl';
 export default function Login() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const handleInputChange = useCallback(
-        (event) => {
-            const { name, value } = event.target;
 
-            if (name === 'id') {
-                setId(value);
-            } else if (name === 'password') {
-                setPassword(value);
+    const handleInputChange = useCallback((event) => {
+        const { name, value } = event.target;
+        if (name === 'id') {
+            setId(value);
+        } else if (name === 'password') {
+            setPassword(value);
+        }
+    }, []);
+
+    const handleLogin = async () => {
+        try {
+            const response = await fetch(`${baseUrl}/api/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+                navigate('/dashboard');
+            } else {
+                alert('로그인 실패');
             }
-        },
-        [setId, setPassword]
-    );
-
-    const handleLogin = () => {
-        const member = members.find((m) => m.id === id && m.password === password);
-        if (member) {
-            //   alert("로그인 성공");
-            navigate('/Dashboard');
-        } else {
+        } catch (error) {
+            console.error('Error during login:', error);
             alert('로그인 실패');
-            console.log(id, password);
         }
     };
+
     return (
         <div className="login-container">
             <div className="login-container-half">
@@ -40,29 +49,22 @@ export default function Login() {
                 <section className="login-section">
                     <MemoizedInput
                         className="login-section-input"
-                        placeholder={'아이디'}
-                        name={'id'}
+                        placeholder="아이디"
+                        name="id"
                         onChange={handleInputChange}
                     />
                     <MemoizedInput
                         className="login-section-input"
-                        placeholder={'비밀번호'}
-                        name={'password'}
+                        placeholder="비밀번호"
+                        name="password"
+                        type="password"
                         onChange={handleInputChange}
-                        type={'password'}
                     />
                     <button className="login-section-button" onClick={handleLogin}>
                         로그인
                     </button>
                 </section>
-                <footer className="login-footer">
-                    <p className="login-footer-registration">
-                        아이디가 없으신가요? <Link to="/register">회원가입</Link>
-                    </p>
-                    <p className="login-footer-find">아이디 찾기 / 비밀번호 재설정</p>
-                </footer>
             </div>
-            <div className="login-container-half logo"></div>
         </div>
     );
 }
