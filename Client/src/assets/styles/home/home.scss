@@ -1,0 +1,22 @@
+.home-container {
+    .home-header {
+        text-align: center;
+        .home-header-title {
+            font-size: 50px;
+            font-weight: bold;
+        }
+    }
+    .home-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        place-items: center;
+        img {
+            width: 35vw;
+        }
+        .home-section-clock {
+            font-size: 50px;
+            color: #7143c7;
+        }
+    }
+}

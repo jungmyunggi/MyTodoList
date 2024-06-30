@@ -1,0 +1,55 @@
+.registration-container {
+  margin-top: 15vh;
+  background-color: #ffffff;
+  width: 30vw;
+  height: 60vh;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .registration-header {
+    text-align: center;
+    .back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+    }
+    .registration-header-title {
+      font-size: 30px;
+      font-weight: bold;
+    }
+    margin-bottom: 20px;
+  }
+  .registration-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .registration-section-input {
+      width: 70%;
+      height: 40px;
+      border-radius: 10px;
+      background-color: #d9d9d9;
+      border: none;
+      margin-bottom: 20px;
+      padding: 10px;
+      outline: none;
+    }
+    .registration-section-button {
+      width: 70%;
+      height: 50px;
+      border-radius: 10px;
+      background-color: #2c3e50;
+      color: #ffffff;
+      border: none;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    .registration-section-button:hover {
+      background-color: #608ab4;
+    }
+  }
+}
