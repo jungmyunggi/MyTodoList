@@ -3,7 +3,7 @@ import MemoizedInput from '../components/Input';
 import '../assets/styles/registration/registration.scss';
 import { useNavigate } from 'react-router-dom';
 import backButton from '../assets/images/free-icon-back-arrow-8138445.png';
-import members from '../util/member';
+import axios from 'axios';
 import { baseUrl } from '../util/baseUrl';
 export default function Registration() {
     const navigate = useNavigate();
@@ -24,15 +24,13 @@ export default function Registration() {
         },
         [setId, setPassword, setName]
     );
-    const handleRegister = async () => {
+    const handleSignup = async () => {
         try {
-            const response = await fetch(`${baseUrl}/api/auth/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id, password, name }),
-            });
+            const response = await axios.post(`${baseUrl}/api/auth/signup`,{
+                id:id,
+                password:password,
+                name:name
+            })
 
             if (response.ok) {
                 navigate('/login');

@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MemoizedInput from '../components/Input';
 import '../assets/styles/login/login.scss';
 import { baseUrl } from '../util/baseUrl';
+import axios from 'axios';
+// import { loginEmail, signupEmail } from '../firebase';
 export default function Login() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
@@ -19,20 +21,18 @@ export default function Login() {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch(`${baseUrl}/api/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id, password }),
+            const response = await axios.post(`${baseUrl}/api/auth/login`, {
+                id,
+                password
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem('token', data.token);
-                navigate('/dashboard');
+    
+            if (response.status === 200) {
+                const result = response.data;
+                console.log(result);
+                
+                navigate('/DashBoard');
             } else {
-                alert('로그인 실패');
+                throw new Error('Login failed');
             }
         } catch (error) {
             console.error('Error during login:', error);
@@ -63,8 +63,11 @@ export default function Login() {
                     <button className="login-section-button" onClick={handleLogin}>
                         로그인
                     </button>
+                    <p>아이디가 없으신가요?<Link to={"/register"}>회원가입</Link></p>
+                    <p>아이디 찾기 / 비밀번호 초기화</p>
                 </section>
             </div>
+            <div className="login-container-half logo"></div>
         </div>
     );
 }
