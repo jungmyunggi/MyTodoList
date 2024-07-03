@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import MemoizedInput from '../components/Input';
 import '../assets/styles/login/login.scss';
 import { baseUrl } from '../util/baseUrl';
+import formatDate from '../util/formatDate';
 import axios from 'axios';
 // import { loginEmail, signupEmail } from '../firebase';
 export default function Login() {
@@ -28,8 +29,11 @@ export default function Login() {
     
             if (response.status === 200) {
                 const result = response.data;
-                console.log(result);
-                
+                console.log('Login successful:', result);
+                localStorage.setItem("name",result.name)
+                localStorage.setItem("signupTime", result.signupTime)
+                console.log(result)
+                // 대시보드로 이동
                 navigate('/DashBoard');
             } else {
                 throw new Error('Login failed');
