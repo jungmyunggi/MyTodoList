@@ -1,0 +1,73 @@
+.todo-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    place-items: center;
+
+    .todo-calender {
+        width: 30vw;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+
+        .todo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+
+            button {
+                background-color: transparent;
+                color: #3447f3;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        }
+
+        .days-of-week {
+            display: flex;
+
+            .day-of-week {
+                flex: 1;
+                text-align: center;
+                padding: 8px;
+                font-weight: bold;
+            }
+        }
+
+        .weeks {
+            .week {
+                display: flex;
+
+                .day,
+                .empty {
+                    flex: 1;
+                    text-align: center;
+                    padding: 16px;
+
+                    &:last-child {
+                        border-right: none;
+                    }
+                }
+
+                .day {
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #6c7ddb;
+                    }
+                }
+
+                .selected {
+                    background-color: #3447f3;
+                    color: #fff;
+                    border-radius: 10%;
+                }
+            }
+        }
+    }
+}
