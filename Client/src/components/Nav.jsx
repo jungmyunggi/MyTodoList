@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import '../assets/styles/commons/nav.scss';
 
-export default function Nav({ sectionNumber = 1 }) {
+export default function Nav({ onSelectSection, sectionNumber = 1 }) {
     const [activeSection, setActiveSection] = useState(sectionNumber);
 
     const handleNavClick = (section) => {
         setActiveSection(section);
+        onSelectSection(section);
     };
 
     return (
