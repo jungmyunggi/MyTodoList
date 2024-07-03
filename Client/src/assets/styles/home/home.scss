@@ -1,21 +1,18 @@
 .home-container {
-    .home-header {
-        text-align: center;
-        .home-header-title {
-            font-size: 50px;
-            font-weight: bold;
-        }
-    }
+    // .home-header {
+    //     text-align: center;
+        
+    // }
     .home-section {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
         place-items: center;
         img {
-            width: 35vw;
+            width: 30vw;
         }
         .home-section-clock {
-            font-size: 50px;
+            font-size: 2vw;
             color: #7143c7;
         }
     }
