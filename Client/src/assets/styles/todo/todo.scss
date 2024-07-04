@@ -1,73 +1,100 @@
 .todo-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    place-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  place-items: center;
 
-    .todo-calender {
-        width: 30vw;
-        margin: 0 auto;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
+  .todo-calender {
+    width: 30vw;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 
-        .todo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px;
+    .todo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
 
-            button {
-                background-color: transparent;
-                color: #3447f3;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-        }
-
-        .days-of-week {
-            display: flex;
-
-            .day-of-week {
-                flex: 1;
-                text-align: center;
-                padding: 8px;
-                font-weight: bold;
-            }
-        }
-
-        .weeks {
-            .week {
-                display: flex;
-
-                .day,
-                .empty {
-                    flex: 1;
-                    text-align: center;
-                    padding: 16px;
-
-                    &:last-child {
-                        border-right: none;
-                    }
-                }
-
-                .day {
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: #6c7ddb;
-                    }
-                }
-
-                .selected {
-                    background-color: #3447f3;
-                    color: #fff;
-                    border-radius: 10%;
-                }
-            }
-        }
+      button {
+        background-color: transparent;
+        color: #3447f3;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
     }
+
+    .days-of-week {
+      display: flex;
+
+      .day-of-week {
+        flex: 1;
+        text-align: center;
+        padding: 8px;
+        font-weight: bold;
+      }
+    }
+
+    .weeks {
+      .week {
+        display: flex;
+
+        .day,
+        .empty {
+          flex: 1;
+          text-align: center;
+          padding: 16px;
+
+          &:last-child {
+            border-right: none;
+          }
+        }
+
+        .day {
+          cursor: pointer;
+
+          &:hover {
+            background-color: #6c7ddb;
+          }
+        }
+
+        .selected {
+          background-color: #3447f3;
+          color: #fff;
+          border-radius: 10%;
+        }
+      }
+    }
+  }
+  .todo-schedule {
+    width: 30vw;
+    text-align: center;
+    margin: 0 auto;
+    overflow-y: auto; // 스크롤 추가
+    min-height: 100%;
+    table {
+      width: 100%;
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        color: #f4e734;
+      }
+      button {
+        background-color: #b922ff;
+        border: none;
+        border-radius: 10px;
+        color: #ffffff;
+        padding: 10px;
+      }
+      tr.checked td {
+        text-decoration: line-through;
+        color: #bbb;
+      }
+    }
+  }
 }
